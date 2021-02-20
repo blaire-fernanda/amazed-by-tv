@@ -26,13 +26,10 @@ tvApp.displayTvData = (data) => {
     const titleH3 = document.createElement('h3');
     titleH3.textContent = data.name;
     showDetailsDiv.appendChild(titleH3);
-    const imageDiv = document.createElement('div');
-    imageDiv.classList.add('image');
-    showDetailsDiv.appendChild(imageDiv);
     const image = document.createElement('img');
     image.src = data.image.medium;
     image.alt = `${data.name} poster`;
-    imageDiv.appendChild(image);
+    showDetailsDiv.appendChild(image);
     const detailsDiv = document.createElement('div');
     detailsDiv.classList.add('details');
     showDetailsDiv.appendChild(detailsDiv);
@@ -60,10 +57,16 @@ tvApp.displayTvData = (data) => {
     const status = document.createElement('p');
     status.textContent = data.status;
     detailsDiv.appendChild(status);
+    const website = document.createElement('a');
+    website.textContent = 'visit website';
+    website.classList.add('button');
+    website.href = data.url;
+    detailsDiv.appendChild(website);
     const descriptionDiv = document.createElement('div');
     descriptionDiv.classList.add('description');
     showDetailsDiv.appendChild(descriptionDiv);
     descriptionDiv.innerHTML = data.summary;
+    
 };
 
 tvApp.listenToForm = () => {
