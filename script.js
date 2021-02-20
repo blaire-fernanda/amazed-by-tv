@@ -1,10 +1,9 @@
 const tvApp = {};
 
 tvApp.apiUrl = "http://api.tvmaze.com/singlesearch/shows";
-tvApp.apiQuery = "friends";
 
-tvApp.getData = () => {
-
+tvApp.getData = (query) => {
+    tvApp.apiQuery = query;
     const url = new URL(tvApp.apiUrl);
     url.search = new URLSearchParams({
             q: tvApp.apiQuery
@@ -18,18 +17,25 @@ tvApp.getData = () => {
             console.log(jsonResponse);
             tvApp.displayTvData(jsonResponse);
         })
-
 }
 
 tvApp.displayTvData = (data) => {
-    const title = document.querySelector('.show-details h3');
-    title.textContent = data.name;
-    const imageDiv = document.querySelector('.image');
+    const showDetailsDiv = document.querySelector('.show-details');
+    showDetailsDiv.innerHTML = '';
+    console.log(showDetailsDiv);
+    const titleH3 = document.createElement('h3');
+    titleH3.textContent = data.name;
+    showDetailsDiv.appendChild(titleH3);
+    const imageDiv = document.createElement('div');
+    imageDiv.classList.add('image');
+    showDetailsDiv.appendChild(imageDiv);
     const image = document.createElement('img');
     image.src = data.image.medium;
     image.alt = `${data.name} poster`;
     imageDiv.appendChild(image);
-    const detailsDiv = document.querySelector('.details');
+    const detailsDiv = document.createElement('div');
+    detailsDiv.classList.add('details');
+    showDetailsDiv.appendChild(detailsDiv);
     const genresDiv = document.createElement('div');
     genresDiv.classList.add('genres');
     detailsDiv.appendChild(genresDiv);
@@ -54,13 +60,25 @@ tvApp.displayTvData = (data) => {
     const status = document.createElement('p');
     status.textContent = data.status;
     detailsDiv.appendChild(status);
-    const descriptionDiv = document.querySelector('.description');
+    const descriptionDiv = document.createElement('div');
+    descriptionDiv.classList.add('description');
+    showDetailsDiv.appendChild(descriptionDiv);
     descriptionDiv.innerHTML = data.summary;
-
 };
 
+tvApp.listenToForm = () => {
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const query = document.querySelector('input[type=text]').value;
+        tvApp.getData(query);
+        document.querySelector('input[type=text]').value = '';
+    });
+}
+
 tvApp.init = () => {
-    tvApp.getData();
+    document.querySelector('input[type=text]').value = '';
+    tvApp.listenToForm();
 };
 
 tvApp.init();
