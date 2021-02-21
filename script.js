@@ -26,18 +26,21 @@ tvApp.displayTvData = (data) => {
     const titleH3 = document.createElement('h3');
     titleH3.textContent = data.name;
     showDetailsDiv.appendChild(titleH3);
+    const imageDiv = document.createElement('div');
+    imageDiv.classList.add('image');
+    showDetailsDiv.appendChild(imageDiv);
     const image = document.createElement('img');
-    image.src = data.image.medium;
+    image.src = data.image.original;
     image.alt = `${data.name} poster`;
-    showDetailsDiv.appendChild(image);
+    imageDiv.appendChild(image);
     const detailsDiv = document.createElement('div');
     detailsDiv.classList.add('details');
     showDetailsDiv.appendChild(detailsDiv);
     const genresDiv = document.createElement('div');
     genresDiv.classList.add('genres');
     detailsDiv.appendChild(genresDiv);
-    const genresP = document.createElement('p');
-    genresP.textContent = "Genres";
+    const genresP = document.createElement('h4');
+    genresP.textContent = "Genres:";
     genresDiv.appendChild(genresP);
     const genresUl = document.createElement('ul');
     genresDiv.appendChild(genresUl);
@@ -46,16 +49,16 @@ tvApp.displayTvData = (data) => {
         genreLi.textContent = genre;
         genresUl.appendChild(genreLi);
     });
-    const release = document.createElement('p');
+    const release = document.createElement('div');
     // release.classList.add('release');
-    release.textContent = data.premiered;
+    release.innerHTML = `<h4>premiered on:</h4><p>${data.premiered}</p>`;
     detailsDiv.appendChild(release);
-    const rating = document.createElement('p');
+    const rating = document.createElement('div');
     // rating.classList.add('rating');
-    rating.textContent = data.rating.average;
+    rating.innerHTML = `<h4>Rating:</h4><p>${data.rating.average}</p>`;
     detailsDiv.appendChild(rating);
-    const status = document.createElement('p');
-    status.textContent = data.status;
+    const status = document.createElement('div');
+    status.innerHTML = `<h4>Status:</h4> <p>${data.status}</p>`;
     detailsDiv.appendChild(status);
     const website = document.createElement('a');
     website.textContent = 'visit website';
@@ -65,7 +68,7 @@ tvApp.displayTvData = (data) => {
     const descriptionDiv = document.createElement('div');
     descriptionDiv.classList.add('description');
     showDetailsDiv.appendChild(descriptionDiv);
-    descriptionDiv.innerHTML = data.summary;
+    descriptionDiv.innerHTML =`<h4>Description:</h4><div class='content'>${data.summary}</div>`;
     
 };
 
