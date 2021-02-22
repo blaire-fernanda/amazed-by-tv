@@ -231,7 +231,6 @@ h1,
 h2,
 h3,
 p {
-  margin: 0;
   font-size: 1.6rem;
 }
 
@@ -250,37 +249,6 @@ img {
   display: block;
 }
 
-body {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  background-color: #C7EFCF;
-}
-
-header,
-main {
-  padding: 7%;
-  min-height: 95vh;
-}
-
-header {
-  width: 45%;
-}
-
-main {
-  width: 55%;
-  padding-left: 0;
-}
-
-footer {
-  width: 100%;
-  text-align: center;
-  height: 5vh;
-  font-family: "Bebas Neue", cursive;
-}
-
 h1,
 h3 {
   font-family: "Bebas Neue", cursive;
@@ -288,7 +256,139 @@ h3 {
   text-shadow: 4px 4px #8FE09F;
 }
 
-.show-details {
+button,
+.button {
+  font-family: "Bebas Neue", cursive;
+  color: black;
+  font-size: 2.5rem;
+  line-height: 1em;
+  padding: 10px 30px 8px;
+  border: none;
+  margin-top: -5px;
+  background-color: #8FE09F;
+  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+button:hover, button:focus,
+.button:hover,
+.button:focus {
+  background-color: black;
+  color: white;
+}
+
+.button {
+  margin-top: 20px;
+}
+
+body {
+  background-color: #C7EFCF;
+}
+
+.wrapper {
+  width: 90%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+header,
+main {
+  padding-top: 7%;
+  min-height: 95vh;
+}
+
+@media (max-width: 900px) {
+  header,
+  main {
+    min-height: unset;
+  }
+}
+
+header {
+  width: 45%;
+  padding-right: 7%;
+  font-family: "Poppins", sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@media (max-width: 900px) {
+  header {
+    width: 100%;
+    padding: 5% 0;
+  }
+}
+
+header h2 {
+  margin: 20px 0;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+header label,
+header input,
+header button {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 550px) {
+  header label,
+  header input,
+  header button {
+    max-width: unset;
+  }
+}
+
+header input {
+  font-size: 3rem;
+  line-height: 1em;
+  padding: 5px 10px 2px;
+  font-family: "Bebas Neue", cursive;
+  background-color: #AFE9BB;
+  border: none;
+  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+header input:hover, header input:focus {
+  background-color: black;
+  color: white;
+}
+
+main {
+  width: 55%;
+}
+
+@media (max-width: 900px) {
+  main {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+main .show-details {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -297,49 +397,91 @@ h3 {
   font-family: "Bebas Neue", cursive;
 }
 
-.show-details h3 {
+main .show-details h3 {
   font-size: 5rem;
   width: 100%;
   margin-bottom: 10px;
 }
 
-.show-details h4 {
+main .show-details h4 {
   font-size: 2.2rem;
   padding-top: 20px;
 }
 
-.show-details p,
-.show-details li {
+main .show-details p,
+main .show-details li {
   font-size: 4rem;
 }
 
-.show-details .image {
+main .show-details .image {
   width: 50%;
 }
 
-.show-details .image img {
+@media (max-width: 550px) {
+  main .show-details .image {
+    width: 100%;
+  }
+}
+
+main .show-details .image img {
   width: 100%;
 }
 
-.show-details .details {
+main .show-details .details {
   width: 50%;
   padding-left: 20px;
 }
 
-.show-details .description {
+@media (max-width: 550px) {
+  main .show-details .details {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+main .show-details .description {
   margin-top: 30px;
 }
 
-.show-details .description p {
+main .show-details .description p {
   font-size: 2.5rem;
   padding-bottom: 20px;
   line-height: 1.2em;
 }
 
-.show-details .description .content {
+main .show-details .description .content {
   background-color: #AFE9BB;
   height: 30vh;
   overflow: auto;
   padding: 30px;
   margin-top: 5px;
+}
+
+@media (max-width: 900px) {
+  main .show-details .description .content {
+    height: unset;
+    padding-bottom: 10px;
+  }
+}
+
+footer {
+  margin-top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 5vh;
+  min-height: 60px;
+  font-family: "Bebas Neue", cursive;
+}
+
+footer a {
+  color: black;
+  text-decoration: underline;
 }

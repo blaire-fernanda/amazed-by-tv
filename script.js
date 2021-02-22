@@ -61,7 +61,7 @@ tvApp.displayTvData = (data) => {
     status.innerHTML = `<h4>Status:</h4> <p>${data.status}</p>`;
     detailsDiv.appendChild(status);
     const website = document.createElement('a');
-    website.textContent = 'visit website';
+    website.textContent = 'learn more';
     website.classList.add('button');
     website.href = data.url;
     detailsDiv.appendChild(website);

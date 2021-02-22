@@ -1,5 +1,8 @@
 @import 'setup';
 @import 'variables';
+@import 'mixins';
+
+// General styles
 
 html {
     font-size: 62.5%;
@@ -11,114 +14,230 @@ h1,
 h2,
 h3,
 p {
-    margin: 0;
     font-size: 1.6rem;
 }
 
 ul {
-    padding: 0; list-style-type: none;
+    padding: 0;
+    list-style-type: none;
 }
 
 a {
-    display: inline-block; text-decoration: none;
+    display: inline-block;
+    text-decoration: none;
 }
 
 img {
-    max-width: 100%; display: block;
-}
-
-body {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: $background;
-}
-
-
-header,
-main {
-    padding: 7%;
-    min-height: 95vh;
-}
-
-header {
-    width: 45%;
-}
-
-main {
-    width: 55%;
-    padding-left: 0;
-}
-
-footer {
-    width: 100%;
-    text-align: center;
-    height: 5vh;
-    font-family: $special;
+    max-width: 100%;
+    display: block;
 }
 
 h1,
 h3 {
     font-family: $special;
     font-size: 8rem;
-    text-shadow: 4px 4px #8FE09F;
+    text-shadow: 4px 4px $background-darkest;
 }
 
+button,
+.button {
 
+    font-family: $special;
+    color: black;
+    font-size: 2.5rem;
+    line-height: 1em;
+    padding: 10px 30px 8px;
+    border: none;
+    margin-top: -5px;
+    background-color: $background-darkest;
+    transition: 
+        background-color 0.3s ease-in-out,
+        color 0.3s ease-in-out
+    ;
 
+    &:hover,
+    &:focus {
+        background-color: black;
+        color: white;
+    }
 
-.show-details {
+}
+
+.button {
+    margin-top: 20px;
+}
+
+// Sections ans styles
+
+body {
+    background-color: $background;
+}
+
+.wrapper {
+    width: 90%;
+    max-width: 1300px;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    font-family: $special;
-    
-    h3 {
-        font-size: 5rem;
-        width: 100%;
-        margin-bottom: 10px;
+    @include tabletMQ {
+        flex-direction: column;
     }
-    h4 {
-        font-size: 2.2rem;
-        padding-top: 20px;
-    }
-
-    p, 
-    li {
-        font-size: 4rem;
-    }
-    .image {
-        width: 50%;
-
-        img {
-            width: 100%;
-        }
-    }
-    
-    .details{
-        width: 50%;
-        padding-left: 20px;
-    }
-    
-
-    .description {
-        margin-top: 30px;
-        
-        p {
-            font-size: 2.5rem;
-            padding-bottom: 20px;
-            line-height: 1.2em;
-        }
-        
-        .content{
-            background-color: #AFE9BB;
-            height: 30vh;
-            overflow: auto;
-            padding: 30px;
-            margin-top: 5px;
-        }
-    }
-
-      
 }
 
+header,
+main {
+    padding-top: 7%;
+    min-height: 95vh;
+    @include tabletMQ {
+        min-height: unset;
+    }
+}
 
+header {
 
+    width: 45%;
+    @include tabletMQ {
+        width: 100%;
+        padding: 5% 0;
+    }
+    padding-right: 7%;
+    font-family: $simple;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        margin: 20px 0;
+        font-weight: bold;
+        font-size: 2rem;
+    }
+
+    label,
+    input,
+    button {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 10px;
+        @include mobileMQ {
+            max-width: unset;
+        }
+    }
+
+    input {
+
+        font-size: 3rem;
+        line-height: 1em;
+        padding: 5px 10px 2px;
+        font-family: $special;
+        background-color: $background-darker;
+        border: none;
+        transition: 
+        background-color 0.3s ease-in-out,
+        color 0.3s ease-in-out
+        ;
+
+        &:hover,
+        &:focus {
+            background-color: black;
+            color: white;
+        }
+
+    }
+    
+}
+
+main {
+
+    width: 55%;
+    @include tabletMQ {
+        width: 100%;
+        padding: 0;
+    }
+
+    .show-details {
+
+        display: flex;
+        flex-wrap: wrap;
+        font-family: $special;
+        
+        h3 {
+            font-size: 5rem;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    
+        h4 {
+            font-size: 2.2rem;
+            padding-top: 20px;
+        }
+    
+        p, 
+        li {
+            font-size: 4rem;
+        }
+    
+        .image {
+    
+            width: 50%;
+
+            @include mobileMQ {
+                width: 100%;
+            }
+    
+            img {
+                width: 100%;
+            }
+        }
+        
+        .details {
+            width: 50%;
+            padding-left: 20px;
+            @include mobileMQ {
+                width: 100%;
+                padding: 0;
+            }
+        }    
+    
+        .description {
+    
+            margin-top: 30px;
+            
+            p {
+                font-size: 2.5rem;
+                padding-bottom: 20px;
+                line-height: 1.2em;
+            }
+            
+            .content{
+                background-color: $background-darker;
+                height: 30vh;
+                overflow: auto;
+                padding: 30px;
+                margin-top: 5px;
+                @include tabletMQ {
+                    height: unset;
+                    padding-bottom: 10px;
+                }
+            }
+        }
+    
+    }
+    // end of show-details
+
+}
+// end of main
+
+footer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 5vh;
+    min-height: 60px;
+    font-family: $special;
+    a {
+        color: black;
+        text-decoration: underline;
+    }
+}
