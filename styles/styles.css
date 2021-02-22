@@ -247,13 +247,23 @@ a {
 img {
   max-width: 100%;
   display: block;
+  border-right: 10px solid #FE5F55;
+  border-top: 10px solid #FE5F55;
+  border-left: 10px solid #F0B67F;
+  border-bottom: 10px solid #F0B67F;
+  -webkit-box-shadow: -8px 8px 4px #8FE09F;
+          box-shadow: -8px 8px 4px #8FE09F;
 }
 
 h1,
 h3 {
+  text-shadow: 4px 4px #8FE09F;
   font-family: "Bebas Neue", cursive;
   font-size: 8rem;
-  text-shadow: 4px 4px #8FE09F;
+}
+
+h1 {
+  text-shadow: 4px 4px #8FE09F, 7px 7px #F0B67F, 10px 10px #FE5F55;
 }
 
 button,
@@ -266,8 +276,8 @@ button,
   border: none;
   margin-top: -5px;
   background-color: #8FE09F;
-  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 button:hover, button:focus,
@@ -368,8 +378,8 @@ header input {
   font-family: "Bebas Neue", cursive;
   background-color: #AFE9BB;
   border: none;
-  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 header input:hover, header input:focus {
@@ -451,6 +461,8 @@ main .show-details .description p {
 
 main .show-details .description .content {
   background-color: #AFE9BB;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#8FE09F), to(#F0B67F));
+  background-image: linear-gradient(#8FE09F, #F0B67F);
   height: 30vh;
   overflow: auto;
   padding: 30px;

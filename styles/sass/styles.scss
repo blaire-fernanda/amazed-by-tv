@@ -30,13 +30,23 @@ a {
 img {
     max-width: 100%;
     display: block;
+    border-right: 10px solid $orange-highlight;
+    border-top: 10px solid $orange-highlight;
+    border-left: 10px solid $beige-highlight;
+    border-bottom: 10px solid $beige-highlight;
+    box-shadow: -8px 8px 4px $background-darkest;
 }
+
 
 h1,
 h3 {
+    text-shadow: 4px 4px $background-darkest;
     font-family: $special;
     font-size: 8rem;
-    text-shadow: 4px 4px $background-darkest;
+}
+
+h1 {
+    text-shadow: 4px 4px $background-darkest, 7px 7px $beige-highlight, 10px 10px $orange-highlight;
 }
 
 button,
@@ -209,7 +219,9 @@ main {
             }
             
             .content{
+                // max-width: 80%;
                 background-color: $background-darker;
+                background-image: linear-gradient($background-darkest, #F0B67F);
                 height: 30vh;
                 overflow: auto;
                 padding: 30px;
