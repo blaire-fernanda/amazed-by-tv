@@ -247,12 +247,6 @@ a {
 img {
   max-width: 100%;
   display: block;
-  border-right: 10px solid #FE5F55;
-  border-top: 10px solid #FE5F55;
-  border-left: 10px solid #F0B67F;
-  border-bottom: 10px solid #F0B67F;
-  -webkit-box-shadow: -8px 8px 4px #8FE09F;
-          box-shadow: -8px 8px 4px #8FE09F;
 }
 
 h1,
@@ -276,8 +270,8 @@ button,
   border: none;
   margin-top: -5px;
   background-color: #8FE09F;
-  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 button:hover, button:focus,
@@ -348,6 +342,11 @@ header {
   }
 }
 
+header img {
+  width: 100px;
+  margin: 0 0 10px 6px;
+}
+
 header h2 {
   margin: 20px 0;
   font-weight: bold;
@@ -378,13 +377,21 @@ header input {
   font-family: "Bebas Neue", cursive;
   background-color: #AFE9BB;
   border: none;
-  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 header input:hover, header input:focus {
   background-color: black;
   color: white;
+}
+
+header .suggestions li {
+  display: inline-block;
+  background-color: #AFE9BB;
+  padding: 5px 10px 6px;
+  margin: 10px 20px 10px 0;
+  border-radius: 5px;
 }
 
 main {
@@ -435,6 +442,12 @@ main .show-details .image {
 
 main .show-details .image img {
   width: 100%;
+  border-right: 10px solid #FE5F55;
+  border-top: 10px solid #FE5F55;
+  border-left: 10px solid #F0B67F;
+  border-bottom: 10px solid #F0B67F;
+  -webkit-box-shadow: -8px 8px 4px #8FE09F;
+          box-shadow: -8px 8px 4px #8FE09F;
 }
 
 main .show-details .details {

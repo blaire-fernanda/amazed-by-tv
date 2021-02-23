@@ -1,6 +1,7 @@
 const tvApp = {};
 
 tvApp.apiUrl = "http://api.tvmaze.com/singlesearch/shows";
+tvApp.apiUrlSuggestions = "http://api.tvmaze.com/shows";
 
 tvApp.getData = (query) => {
     tvApp.apiQuery = query;
@@ -14,10 +15,66 @@ tvApp.getData = (query) => {
             return response.json();
         })
         .then(function(jsonResponse){
-            console.log(jsonResponse);
+            // console.log(jsonResponse);
             tvApp.displayTvData(jsonResponse);
         })
 }
+
+tvApp.randomNumber = () => {
+
+    const numOfSuggestions = 10;
+    const randomNumbers = [];
+    for ( let i = 0; i < numOfSuggestions; i++) {
+        randomNumbers.push( Math.floor( Math.random() * 53000 ) );
+    }
+
+    // console.log(randomNumbers);
+    tvApp.getSuggestions(randomNumbers);
+};
+
+tvApp.getSuggestions = (randomNumbers) => {
+    // console.log(randomNumbers);
+
+    for ( let i = 0; i < randomNumbers.length ; i++ ) {
+
+        const showId = randomNumbers[i];
+        const url = `${tvApp.apiUrlSuggestions}/${showId}`;
+
+        fetch(url)
+            .then(function(response){
+                // console.log(response);
+                return response.json();
+            })
+            .then(function(jsonResponse){
+                // console.log(jsonResponse);
+                tvApp.displaySuggestions(jsonResponse);
+                // suggestionsArray.push(2);
+            })
+
+    }
+
+    const suggestionsH2 = document.createElement('h2');
+    suggestionsH2.innerText = 'Suggestions';
+    const suggestionsDiv = document.createElement('ul');
+    suggestionsDiv.classList.add('suggestions');
+    const header = document.querySelector('header');
+    header.append(suggestionsH2, suggestionsDiv);
+
+    // this function doesn't work
+    tvApp.listenToSuggestions();
+
+}
+
+tvApp.displaySuggestions = (data) => {
+    
+    // console.log(data);
+
+    const suggestionsDiv = document.querySelector('.suggestions');
+    const suggestion = document.createElement('li');
+    suggestion.innerText = data.name;
+    suggestionsDiv.appendChild(suggestion);
+
+};
 
 tvApp.displayTvData = (data) => {
     const showDetailsDiv = document.querySelector('.show-details');
@@ -38,7 +95,6 @@ tvApp.displayTvData = (data) => {
     showDetailsDiv.appendChild(detailsDiv);
     const genresDiv = document.createElement('div');
     genresDiv.classList.add('genres');
-    detailsDiv.appendChild(genresDiv);
     const genresP = document.createElement('h4');
     genresP.textContent = "Genres:";
     genresDiv.appendChild(genresP);
@@ -50,26 +106,32 @@ tvApp.displayTvData = (data) => {
         genresUl.appendChild(genreLi);
     });
     const release = document.createElement('div');
-    // release.classList.add('release');
     release.innerHTML = `<h4>premiered on:</h4><p>${data.premiered}</p>`;
-    detailsDiv.appendChild(release);
     const rating = document.createElement('div');
-    // rating.classList.add('rating');
     rating.innerHTML = `<h4>Rating:</h4><p>${data.rating.average}</p>`;
-    detailsDiv.appendChild(rating);
     const status = document.createElement('div');
     status.innerHTML = `<h4>Status:</h4> <p>${data.status}</p>`;
-    detailsDiv.appendChild(status);
     const website = document.createElement('a');
     website.textContent = 'learn more';
     website.classList.add('button');
     website.href = data.url;
-    detailsDiv.appendChild(website);
+
+    detailsDiv.append(genresDiv, release, rating, status, website);
+
     const descriptionDiv = document.createElement('div');
     descriptionDiv.classList.add('description');
     showDetailsDiv.appendChild(descriptionDiv);
     descriptionDiv.innerHTML =`<h4>Description:</h4><div class='content'>${data.summary}</div>`;
     
+};
+
+//  not working
+tvApp.listenToSuggestions = () => {
+    const suggestions = document.querySelectorAll('header li');
+    // console.log(suggestions);
+    // for ( suggestion of suggestions ) {
+    //     console.log(suggestion);
+    // };
 };
 
 tvApp.listenToForm = () => {
@@ -83,6 +145,7 @@ tvApp.listenToForm = () => {
 }
 
 tvApp.init = () => {
+    tvApp.randomNumber();
     document.querySelector('input[type=text]').value = '';
     tvApp.listenToForm();
 };

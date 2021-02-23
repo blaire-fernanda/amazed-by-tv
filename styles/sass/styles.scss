@@ -30,13 +30,7 @@ a {
 img {
     max-width: 100%;
     display: block;
-    border-right: 10px solid $orange-highlight;
-    border-top: 10px solid $orange-highlight;
-    border-left: 10px solid $beige-highlight;
-    border-bottom: 10px solid $beige-highlight;
-    box-shadow: -8px 8px 4px $background-darkest;
 }
-
 
 h1,
 h3 {
@@ -48,6 +42,8 @@ h3 {
 h1 {
     text-shadow: 4px 4px $background-darkest, 7px 7px $beige-highlight, 10px 10px $orange-highlight;
 }
+
+
 
 button,
 .button {
@@ -110,10 +106,16 @@ header {
         width: 100%;
         padding: 5% 0;
     }
+
     padding-right: 7%;
     font-family: $simple;
     display: flex;
     flex-direction: column;
+
+    img {
+        width: 100px;
+        margin: 0 0 10px 6px;
+    }
 
     h2 {
         margin: 20px 0;
@@ -153,8 +155,21 @@ header {
         }
 
     }
+
+    .suggestions {
+
+        li {
+            display: inline-block;
+            background-color: $background-darker;
+            padding: 5px 10px 6px;
+            margin: 10px 20px 10px 0;
+            border-radius: 5px;
+        }
+
+    }
     
 }
+// end of header
 
 main {
 
@@ -196,6 +211,11 @@ main {
     
             img {
                 width: 100%;
+                border-right: 10px solid $orange-highlight;
+                border-top: 10px solid $orange-highlight;
+                border-left: 10px solid $beige-highlight;
+                border-bottom: 10px solid $beige-highlight;
+                box-shadow: -8px 8px 4px $background-darkest;
             }
         }
         
