@@ -1,5 +1,9 @@
 const tvApp = {};
 
+
+
+
+
 tvApp.apiUrl = "http://api.tvmaze.com/singlesearch/shows";
 tvApp.apiUrlSuggestions = "http://api.tvmaze.com/shows";
 
@@ -7,7 +11,8 @@ tvApp.getData = (query) => {
     tvApp.apiQuery = query;
     const url = new URL(tvApp.apiUrl);
     url.search = new URLSearchParams({
-            q: tvApp.apiQuery
+            q: tvApp.apiQuery,
+            embed: 'cast'
     });
 
     fetch(url)
@@ -20,66 +25,57 @@ tvApp.getData = (query) => {
         })
 }
 
-tvApp.randomNumber = () => {
+
+tvApp.randomNumbers = () => {
+    // console.log('randomNumbers');
+    const randomNumbers = [];
 
     const numOfSuggestions = 10;
-    const randomNumbers = [];
     for ( let i = 0; i < numOfSuggestions; i++) {
         randomNumbers.push( Math.floor( Math.random() * 53000 ) );
     }
-
-    // console.log(randomNumbers);
-    tvApp.getSuggestions(randomNumbers);
-};
-
-tvApp.getSuggestions = (randomNumbers) => {
-    // console.log(randomNumbers);
-
-    for ( let i = 0; i < randomNumbers.length ; i++ ) {
-
-        const showId = randomNumbers[i];
-        const url = `${tvApp.apiUrlSuggestions}/${showId}`;
-
-        fetch(url)
-            .then(function(response){
-                // console.log(response);
-                return response.json();
-            })
-            .then(function(jsonResponse){
-                // console.log(jsonResponse);
-                tvApp.displaySuggestions(jsonResponse);
-                // suggestionsArray.push(2);
-            })
-
-    }
-
+    const showResults = [];
+    randomNumbers.forEach(number => {
+        showResults.push(getShowByNum(number));
+    });
     const suggestionsH2 = document.createElement('h2');
     suggestionsH2.innerText = 'Suggestions';
     const suggestionsDiv = document.createElement('ul');
     suggestionsDiv.classList.add('suggestions');
     const header = document.querySelector('header');
     header.append(suggestionsH2, suggestionsDiv);
+    Promise.all(showResults)
+        .then(responses => {
+            responses.forEach(show => {
+                tvApp.displaySuggestions(show.name);
+            })
+        })
+        .catch(error => {
+            console.log(error);
+        })
+};
 
-    // this function doesn't work
-    tvApp.listenToSuggestions();
-
+async function getShowByNum(number) {
+    const response = await fetch(`http://api.tvmaze.com/shows/${number}`);
+    const data = await response.json();
+    return data;
 }
 
-tvApp.displaySuggestions = (data) => {
-    
-    // console.log(data);
-
+tvApp.displaySuggestions = (show) => {
     const suggestionsDiv = document.querySelector('.suggestions');
     const suggestion = document.createElement('li');
-    suggestion.innerText = data.name;
+    suggestion.innerText = show;
     suggestionsDiv.appendChild(suggestion);
+    suggestion.addEventListener('click', function(){
+        tvApp.getData(show);
+    });
+}
 
-};
 
 tvApp.displayTvData = (data) => {
     const showDetailsDiv = document.querySelector('.show-details');
     showDetailsDiv.innerHTML = '';
-    console.log(showDetailsDiv);
+    // console.log(showDetailsDiv);
     const titleH3 = document.createElement('h3');
     titleH3.textContent = data.name;
     showDetailsDiv.appendChild(titleH3);
@@ -122,17 +118,22 @@ tvApp.displayTvData = (data) => {
     descriptionDiv.classList.add('description');
     showDetailsDiv.appendChild(descriptionDiv);
     descriptionDiv.innerHTML =`<h4>Description:</h4><div class='content'>${data.summary}</div>`;
-    
+    tvApp.displayCast(data);
 };
 
-//  not working
-tvApp.listenToSuggestions = () => {
-    const suggestions = document.querySelectorAll('header li');
-    // console.log(suggestions);
-    // for ( suggestion of suggestions ) {
-    //     console.log(suggestion);
-    // };
-};
+tvApp.displayCast = (data) => {
+    const castArray = data._embedded.cast;
+    // console.log(castArray);
+    // // console.log(data);
+    console.log(data._embedded.cast)
+    castArray.forEach((member) => {
+        console.log(member.character.name);
+        console.log(member.character.image.medium);
+    })
+
+}
+
+
 
 tvApp.listenToForm = () => {
     const form = document.querySelector('form');
@@ -145,7 +146,7 @@ tvApp.listenToForm = () => {
 }
 
 tvApp.init = () => {
-    tvApp.randomNumber();
+    tvApp.randomNumbers();
     document.querySelector('input[type=text]').value = '';
     tvApp.listenToForm();
 };
