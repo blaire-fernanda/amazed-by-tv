@@ -310,14 +310,14 @@ body {
 }
 
 header,
-main {
+.show-details {
   padding-top: 7%;
   min-height: 95vh;
 }
 
 @media (max-width: 900px) {
   header,
-  main {
+  .show-details {
     min-height: unset;
   }
 }
@@ -402,18 +402,8 @@ header .suggestions li:hover, header .suggestions li:focus {
   color: white;
 }
 
-main {
+.show-details {
   width: 55%;
-}
-
-@media (max-width: 900px) {
-  main {
-    width: 100%;
-    padding: 0;
-  }
-}
-
-main .show-details {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -422,33 +412,40 @@ main .show-details {
   font-family: "Bebas Neue", cursive;
 }
 
-main .show-details h3 {
+@media (max-width: 900px) {
+  .show-details {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.show-details h3 {
   font-size: 5rem;
   width: 100%;
   margin-bottom: 10px;
 }
 
-main .show-details h4 {
+.show-details h4 {
   font-size: 2.2rem;
   padding-top: 20px;
 }
 
-main .show-details p,
-main .show-details li {
+.show-details p,
+.show-details li {
   font-size: 4rem;
 }
 
-main .show-details .image {
+.show-details .image {
   width: 50%;
 }
 
 @media (max-width: 550px) {
-  main .show-details .image {
+  .show-details .image {
     width: 100%;
   }
 }
 
-main .show-details .image img {
+.show-details .image img {
   width: 100%;
   border-right: 10px solid #FE5F55;
   border-top: 10px solid #FE5F55;
@@ -458,29 +455,29 @@ main .show-details .image img {
           box-shadow: -8px 8px 4px #8FE09F;
 }
 
-main .show-details .details {
+.show-details .details {
   width: 50%;
   padding-left: 20px;
 }
 
 @media (max-width: 550px) {
-  main .show-details .details {
+  .show-details .details {
     width: 100%;
     padding: 0;
   }
 }
 
-main .show-details .description {
+.show-details .description {
   margin-top: 30px;
 }
 
-main .show-details .description p {
+.show-details .description p {
   font-size: 2.5rem;
   padding-bottom: 20px;
   line-height: 1.2em;
 }
 
-main .show-details .description .content {
+.show-details .description .content {
   background-color: #AFE9BB;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#8FE09F), to(#F0B67F));
   background-image: linear-gradient(#8FE09F, #F0B67F);
@@ -491,10 +488,14 @@ main .show-details .description .content {
 }
 
 @media (max-width: 900px) {
-  main .show-details .description .content {
+  .show-details .description .content {
     height: unset;
     padding-bottom: 10px;
   }
+}
+
+.cast-members-container {
+  background-color: #F0B67F;
 }
 
 footer {

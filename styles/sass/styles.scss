@@ -91,7 +91,7 @@ body {
 }
 
 header,
-main {
+.show-details {
     padding-top: 7%;
     min-height: 95vh;
     @include tabletMQ {
@@ -182,7 +182,7 @@ header {
 }
 // end of header
 
-main {
+.show-details {
 
     width: 55%;
     @include tabletMQ {
@@ -190,7 +190,6 @@ main {
         padding: 0;
     }
 
-    .show-details {
 
         display: flex;
         flex-wrap: wrap;
@@ -264,11 +263,16 @@ main {
             }
         }
     
-    }
-    // end of show-details
 
 }
-// end of main
+
+// end of show-details
+
+// cast member section beginning
+
+.cast-members-container{
+    background-color: $beige-highlight;
+}
 
 footer {
     margin-top: 30px;
