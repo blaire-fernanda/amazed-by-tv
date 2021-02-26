@@ -40,7 +40,7 @@ h3 {
 }
 
 h1 {
-    text-shadow: 4px 4px $background-darkest, 7px 7px $beige-highlight, 10px 10px $orange-highlight;
+    text-shadow: 4px 4px $background-darkest, 7px 7px $orange-lightest, 10px 10px $orange-highlight;
 }
 
 
@@ -196,7 +196,7 @@ header {
         font-family: $special;
         
         h3 {
-            font-size: 5rem;
+            font-size: 6.5rem;
             width: 100%;
             margin-bottom: 10px;
         }
@@ -221,11 +221,11 @@ header {
     
             img {
                 width: 100%;
-                border-right: 10px solid $orange-highlight;
-                border-top: 10px solid $orange-highlight;
-                border-left: 10px solid $beige-highlight;
-                border-bottom: 10px solid $beige-highlight;
-                box-shadow: -8px 8px 4px $background-darkest;
+                border-right: 15px solid $orange-highlight;
+                border-top: 15px solid $orange-highlight;
+                border-left: 15px solid $orange-lightest;
+                border-bottom: 15px solid $orange-lightest;
+                box-shadow: -10px 10px 4px $background-darkest;
             }
         }
         
@@ -239,7 +239,7 @@ header {
         }    
     
         .description {
-    
+            width: 100%;
             margin-top: 30px;
             
             p {
@@ -250,6 +250,7 @@ header {
             
             .content{
                 // max-width: 80%;
+                width: 100%;
                 background-color: $background-darker;
                 background-image: linear-gradient($background-darkest, #F0B67F);
                 height: 30vh;
@@ -271,7 +272,79 @@ header {
 // cast member section beginning
 
 .cast-members-container{
-    background-color: $beige-highlight;
+    margin-top: 50px;
+    background-color: $orange-lightest;
+
+    h3 {
+        width: 100%;
+        text-align: center;
+        font-size: 6.5rem;
+        padding-top: 80px;
+        text-shadow: 4px 4px $orange-darker;
+
+    }
+
+    .cast-members {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20px;
+        width: 100%;
+        // margin: 10px;
+
+        li {
+            display: flex;
+            margin: 50px 0px 50px 50px;
+            align-items: flex-start;
+            // width: 520px;
+            width: calc(50% - 100px);
+
+            @include tabletMQ {
+                margin-left: 0;
+                // width: 500px;
+            }
+
+
+            .image{
+                width: 50%;
+
+                img {
+                    border-right: 15px solid $background-darkest;
+                    border-top: 15px solid $background-darkest;
+                    border-left: 15px solid $background;
+                    border-bottom: 15px solid $background;
+                    box-shadow: -10px 10px 4px $orange-darker;
+                }
+            }
+
+
+            .cast-info {
+                font-family: $special;
+                margin-left: 20px;
+                width: calc(50% - 20px);
+            }
+
+            h4 {
+                font-size: 2.5rem;
+                padding-top: 3px;
+
+                @include tabletMQ {
+                    font-size: 2rem;
+                }
+
+            }
+
+            p {
+                font-size: 4rem;
+                padding-top: 3px;
+                padding-bottom: 12px;
+
+                @include tabletMQ {
+                    font-size: 3rem;
+                }
+            }
+        }
+
+    }
 }
 
 footer {

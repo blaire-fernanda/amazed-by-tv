@@ -74,6 +74,7 @@ tvApp.displaySuggestions = (show) => {
 
 
 tvApp.displayTvData = (data) => {
+    console.log(data);
     const showDetailsDiv = document.querySelector('.show-details');
     showDetailsDiv.innerHTML = '';
     // console.log(showDetailsDiv);
@@ -84,7 +85,11 @@ tvApp.displayTvData = (data) => {
     imageDiv.classList.add('image');
     showDetailsDiv.appendChild(imageDiv);
     const image = document.createElement('img');
-    image.src = data.image.original;
+    if (data.image !== null){
+        image.src = data.image.original;
+    } else {
+        image.src = './assets/notavailable.jpg';
+    }
     image.alt = `${data.name} poster`;
     imageDiv.appendChild(image);
     const detailsDiv = document.createElement('div');
@@ -137,18 +142,31 @@ tvApp.displayTvData = (data) => {
 
     const descriptionDiv = document.createElement('div');
     descriptionDiv.classList.add('description');
+    if(data.summary !== null && data.summary !== "") {
+        descriptionDiv.innerHTML = `<h4>Description:</h4><div class='content'>${data.summary}</div>`;
+    } else {
+        descriptionDiv.innerHTML = `<h4>Description:</h4><div class='content'><p>Not Available</p></div>`;
+    }
     showDetailsDiv.appendChild(descriptionDiv);
-    descriptionDiv.innerHTML = `<h4>Description:</h4><div class='content'>${data.summary}</div>`;
     tvApp.displayCast(data);
 };
 
 
+
 tvApp.displayCast = (data) => {
+    if (data._embedded.cast.length !== 0) {
+
     const castArray = data._embedded.cast;
+    
     // console.log(castArray);
     // // console.log(data);
     console.log(data._embedded.cast)
     const castWrapper = document.querySelector('.cast-members-container .wrapper');
+    castWrapper.innerHTML = '';
+    const castTitle = document.createElement('h3');
+    castTitle.classList.add('cast-title');
+    castWrapper.appendChild(castTitle);
+    castTitle.innerHTML = `Cast`;
     const castMembersUl = document.createElement('ul');
     castMembersUl.classList.add('cast-members');
     castWrapper.appendChild(castMembersUl);
@@ -156,34 +174,50 @@ tvApp.displayCast = (data) => {
 
 
     castArray.forEach((member) => {
+        console.log(member);
         const castMemberLi = document.createElement('li');
         castMembersUl.appendChild(castMemberLi);
         const castImgDiv = document.createElement('div');
         castImgDiv.classList.add('image');
         castMemberLi.appendChild(castImgDiv);
         const image = document.createElement('img');
-        image.src = member.character.image.medium;
+        if (member.character.image !== null){
+            image.src = member.character.image.medium;
+        } else {
+            image.src = './assets/notavail.jpg';
+        };
         image.alt = `Picture of ${member.character.name}`;
         castImgDiv.appendChild(image);
         const castInfoDiv = document.createElement('div');
         castInfoDiv.classList.add('cast-info');
         castMemberLi.appendChild(castInfoDiv);
         const characterName = document.createElement('div');
-        characterName.innerHTML = `<h4>Name of Character:</h4><p>${member.character.name}</p>`;
+        if (member.character.name !== null) {
+            characterName.innerHTML = `<h4>Name of Character:</h4><p>${member.character.name}</p>`;
+        } else {
+            characterName.innerHTML = `<h4>Name of Character</h4><p>Not Available</p>`;
+        }
         const personName = document.createElement('div');
-        personName.innerHTML = `<h4>Played by:</h4><p>${member.person.name}</p>`;
+        if (member.person.name !== null){
+            personName.innerHTML = `<h4>Played by:</h4><p>${member.person.name}</p>`;
+        } else {
+            personName.innerHTML = `<h4>Played by:</h4><p>Not Available</p>`;
+        }
         const birthday = document.createElement('div');
-        birthday.innerHTML = `<h4>Born: </h4> <p>${member.person.birthday}</p>`;
+        if (member.person.birthday !== null) {
+            birthday.innerHTML = `<h4>Born:</h4> <p>${member.person.birthday}</p>`;
+        } else {
+            birthday.innerHTML = `<h4>Born:</h4><p>Not Available</p>`;
+        }
         const country = document.createElement('div');
-        country.innerHTML = `<h4>Country: </h4> <p>${member.person.country.name}</p>`;
+        if (member.person.country !== null)  {
+            country.innerHTML = `<h4>Country:</h4><p>${member.person.country.name}</p>`;
+        } else {
+            country.innerHTML = `<h4>Country:</h4><p>Not Available</p>`;
+        }
         castInfoDiv.append(characterName, personName, birthday, country);
-
-        console.log(member.character.name);
-        console.log(member.character.image.medium);
-        console.log(member.person.country.name);
-        console.log(member.person.birthday);
     })
-
+    }
 }
 
 
