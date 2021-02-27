@@ -71,10 +71,12 @@ tvApp.getRandomShows = (numOfSuggestions = 10) => {
 tvApp.displaySuggestion = (show) => {
 
     const suggestionsDiv = document.querySelector('.suggestions');
-    const suggestion = document.createElement('li');
+    const suggestionLi = document.createElement('li');
+    const suggestion = document.createElement('button');
     suggestion.innerText = show;
-    suggestionsDiv.appendChild(suggestion);
-
+    suggestionsDiv.appendChild(suggestionLi);
+    suggestionLi.appendChild(suggestion);
+    
     suggestion.addEventListener('click', function () {
         tvApp.getShowDetails(show);
     });
