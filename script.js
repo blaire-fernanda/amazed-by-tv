@@ -1,10 +1,10 @@
 const tvApp = {};
 
 // single search endpoint
-tvApp.apiUrl = "http://api.tvmaze.com/singlesearch/shows";
+tvApp.apiUrl = "https://api.tvmaze.com/singlesearch/shows";
 
 // get show by id endpoint
-tvApp.apiUrlSuggestions = "http://api.tvmaze.com/shows";
+tvApp.apiUrlSuggestions = "https://api.tvmaze.com/shows";
 
 tvApp.getShowDetails = (query) => {
 
@@ -50,7 +50,7 @@ tvApp.getRandomShows = (numOfSuggestions = 10) => {
     });
     
     async function getShowByNum(number) {
-        const response = await fetch(`http://api.tvmaze.com/shows/${number}`);
+        const response = await fetch(`${tvApp.apiUrlSuggestions}/${number}`);
         const data = await response.json();
         return data;
     }
