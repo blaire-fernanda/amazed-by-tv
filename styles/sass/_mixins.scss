@@ -1,9 +1,8 @@
 @mixin tabletMQ {
-    @media (max-width:900px) {
+    @media (max-width:1000px) {
         @content;
     }
 }
-
 @mixin mobileMQ {
     @media (max-width:550px) {
         @content;

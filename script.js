@@ -20,20 +20,16 @@ tvApp.getData = (query) => {
             return response.json();
         })
         .then(jsonResponse => {
-            // console.log(jsonResponse);
             tvApp.displayTvData(jsonResponse);
         })
         .catch(error => {
-            // console.log(error);
         });
 }
 
 
 tvApp.randomNumbers = (numOfSuggestions = 10) => {
-    // console.log('randomNumbers');
     const randomNumbers = [];
 
-    // const numOfSuggestions = 10;
     for (let i = 0; i < numOfSuggestions; i++) {
         randomNumbers.push(Math.floor(Math.random() * 53000));
     }
@@ -50,10 +46,7 @@ tvApp.randomNumbers = (numOfSuggestions = 10) => {
                     tvApp.randomNumbers(1);
                 }
             });
-        })
-        .catch(error => {
-            console.log(error);
-        });
+        });  
 };
 
 async function getShowByNum(number) {
@@ -74,10 +67,8 @@ tvApp.displaySuggestions = (show) => {
 
 
 tvApp.displayTvData = (data) => {
-    console.log(data);
     const showDetailsDiv = document.querySelector('.show-details');
     showDetailsDiv.innerHTML = '';
-    // console.log(showDetailsDiv);
     const titleH3 = document.createElement('h3');
     titleH3.textContent = data.name;
     showDetailsDiv.appendChild(titleH3);
@@ -125,7 +116,6 @@ tvApp.displayTvData = (data) => {
         } else {
             rating.innerHTML = `<h4>Rating:</h4><p>Not Available</p>`;
         }
-    console.log(data);
 
     const status = document.createElement('div');
     if (data.status) {
@@ -155,12 +145,7 @@ tvApp.displayTvData = (data) => {
 
 tvApp.displayCast = (data) => {
     if (data._embedded.cast.length !== 0) {
-
     const castArray = data._embedded.cast;
-    
-    // console.log(castArray);
-    // // console.log(data);
-    console.log(data._embedded.cast)
     const castWrapper = document.querySelector('.cast-members-container .wrapper');
     castWrapper.innerHTML = '';
     const castTitle = document.createElement('h3');
@@ -172,9 +157,7 @@ tvApp.displayCast = (data) => {
     castWrapper.appendChild(castMembersUl);
 
 
-
     castArray.forEach((member) => {
-        console.log(member);
         const castMemberLi = document.createElement('li');
         castMembersUl.appendChild(castMemberLi);
         const castImgDiv = document.createElement('div');
