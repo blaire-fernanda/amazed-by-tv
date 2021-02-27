@@ -64,6 +64,9 @@ tvApp.getRandomShows = (numOfSuggestions = 10) => {
                     tvApp.getRandomShows(1);
                 }
             });
+        })
+        .catch(error => {
+            console.log(error);
         });  
 
 };
