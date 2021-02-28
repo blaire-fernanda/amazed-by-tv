@@ -249,15 +249,15 @@ tvApp.listenToForm = () => {
 
     form.addEventListener('submit', function (event) {
         event.preventDefault();
-        const query = document.querySelector('input[type=text]').value;
+        const query = document.querySelector('input[type=search]').value;
         tvApp.getShowDetails(query);
-        document.querySelector('input[type=text]').value = '';
+        document.querySelector('input[type=search]').value = '';
     });
 
 };
 
 tvApp.init = () => {
-    document.querySelector('input[type=text]').value = '';
+    document.querySelector('input[type=search]').value = '';
     tvApp.getRandomShows();
     tvApp.listenToForm();
 };

@@ -112,6 +112,7 @@ header {
         font-size: 3rem;
         line-height: 1em;
         padding: 5px 10px 2px;
+        width: calc(300px - 20px);
         font-family: $special;
         background-color: $background-darker;
         border: none;
