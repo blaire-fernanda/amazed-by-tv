@@ -270,8 +270,8 @@ button,
   border: none;
   margin-top: -5px;
   background-color: #8FE09F;
-  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 button:hover, button:focus,
@@ -378,8 +378,8 @@ header input {
   font-family: "Bebas Neue", cursive;
   background-color: #AFE9BB;
   border: none;
-  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 header input:hover, header input:focus {
@@ -399,8 +399,8 @@ header .suggestions li button {
   padding: 5px 10px;
   background-color: #AFE9BB;
   border-radius: 5px;
-  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  -webkit-transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 header .suggestions li button:hover, header .suggestions li button:focus {

@@ -23,7 +23,7 @@ tvApp.getShowDetails = (query) => {
             tvApp.displayShowDetails(jsonResponse);
         })
         .catch(error => {
-            console.log(error);
+            alert(`Please try again! An error has ocurred: ${error}`);
         });
 
 };
@@ -66,7 +66,7 @@ tvApp.getRandomShows = (numOfSuggestions = 10) => {
             });
         })
         .catch(error => {
-            console.log(error);
+            alert(`Please try again! An error has ocurred: ${error}`);
         });  
 
 };
